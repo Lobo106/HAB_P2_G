@@ -24,3 +24,13 @@ app.use(express.json());
 // Middleware que permite deserializar un body en formato "form-data" creando la propiedad
 // "body" y "files" en el objeto "request".
 app.use(fileUpload());
+
+
+
+
+
+
+// Ponemos el servidor a escuchar peticiones en un puerto dado.
+app.listen(process.env.PORT, () => {
+    console.log(`Server listenting at http://localhost:${process.env.PORT}`);
+});

@@ -77,7 +77,7 @@ ADMINISTRADOR
 -   POST [/post] - Permite crear un post. *TOKEN*
 -   GET [/post] - Lista todos los post(los resueltos y los sin resolver).
 -   GET [/post/:idPost] - Devuelve información de un post concreto.
--   PUT[/post/:idPost] - desmarca marca la incidencia como resuelta
+-   PUT[/post/:idPost] - desmarca marca la incidencia como resuelta *TOKEN*
 
 ## Endpoints - OPCIONALES
 

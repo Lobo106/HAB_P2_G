@@ -41,7 +41,7 @@ const createTables = async () => {
                 text VARCHAR(280) NOT NULL,
                 barrrio VARCHAR(100) NOT NULL,          
                 photo VARCHAR(100),
-                resuelto BOOLEAN
+                resuelto BOOLEAN DEFAULT FALSE,
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
                 modifiedAt TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
             )
