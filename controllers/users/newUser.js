@@ -1,4 +1,4 @@
-const insertUserQuery = require('../../db/queries/users/insertUserQuery');
+const insertUserQuery = require('../../db/querys/users/insertUserQuery');
 
 const { v4: uuid } = require('uuid');
 
@@ -21,7 +21,7 @@ const newUser = async (req, res, next) => {
         await insertUserQuery(name, email, password, registrationCode);
 
         // Creamos el asunto del email.
-        const subject = 'Activa tu usuario en Diario de Viajes';
+        const subject = 'Activa tu usuario en Ciudad Sostenible';
 
         // Creamos el contenido.
         const emailContent = `

@@ -1,4 +1,4 @@
-const selectUserByEmailQuery = require('../../db/queries/users/selectUserByEmailQuery');
+const selectUserByEmailQuery = require('../../db/querys/users/selectUserByEmailQuery');
 
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -29,8 +29,7 @@ const loginUser = async (req, res, next) => {
 
         // Objeto con información que queremos añadir al token.
         const userInfo = {
-            id: user.id,
-            role: user.role,
+            id: user.id
         };
 
         // Creamos el token.

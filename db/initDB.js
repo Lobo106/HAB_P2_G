@@ -26,6 +26,7 @@ const createTables = async () => {
                 name VARCHAR(100) UNIQUE NOT NULL,
                 email VARCHAR(100) UNIQUE NOT NULL,          
                 password VARCHAR(100) NOT NULL,
+                registrationCode VARCHAR(100) NOT NULL,
                 avatar VARCHAR(100),
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
                 modifiedAt TIMESTAMP ON UPDATE CURRENT_TIMESTAMP 
@@ -39,7 +40,7 @@ const createTables = async () => {
                 FOREIGN KEY(idUser) REFERENCES users(id),
                 title VARCHAR(100) NOT NULL,
                 text VARCHAR(280) NOT NULL,
-                barrrio VARCHAR(100) NOT NULL,          
+                barrio VARCHAR(100) NOT NULL,          
                 photo VARCHAR(100),
                 resuelto BOOLEAN DEFAULT FALSE,
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -47,6 +48,9 @@ const createTables = async () => {
             )
         `);
 
+        await connection.query(`
+            INSERT INTO users (name, email, password, registrationCode)
+            VALUES( 'Administrador', 'administrador@gmail.com', '12345', '1')`)
 
         console.log('¡Tablas creadas!');
     } catch (err) {

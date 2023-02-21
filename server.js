@@ -4,6 +4,8 @@ const express = require('express');
 const fileUpload = require('express-fileupload');
 const morgan = require('morgan');
 const cors = require('cors');
+const solvePost = require('./controllers/post/solvePost');
+
 
 // Creamos el servidor.
 const app = express();
@@ -26,9 +28,9 @@ app.use(express.json());
 app.use(fileUpload());
 
 /**
- * ############################
- * ## Controladores Usuarios ##
- * ############################
+ * ##########################
+ * ## Controladores Users ##
+ * ##########################
  */
 const {
     newUser,
@@ -43,10 +45,39 @@ app.post('/users', newUser);
 app.put('/users/validate/:registrationCode', validateUser);
 
 // Login de usuario.
-app.post('/users/login', loginUser);
+app.post('/users/login', loginUser)
+
+
+/**
+ * ##########################
+ * ## Controladores Post ##
+ * ##########################
+ */
+
+
+//Resolver o activar un Post
+app.put('/posts/:idPost', solvePost)
 
 
 
+
+// Middleware de error.
+app.use((err, req, res, next) => {
+    console.error(err);
+
+    res.status(err.httpStatus || 500).send({
+        status: 'error',
+        message: err.message,
+    });
+});
+
+// Middleware de ruta no encontrada.
+app.use((req, res) => {
+    res.status(404).send({
+        status: 'error',
+        message: 'Ruta no encontrada',
+    });
+});
 
 // Ponemos el servidor a escuchar peticiones en un puerto dado.
 app.listen(process.env.PORT, () => {

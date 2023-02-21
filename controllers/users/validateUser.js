@@ -1,4 +1,4 @@
-const activeUserQuery = require('../../db/queries/users/activeUserQuery');
+const activeUserQuery = require('../../db/querys/users/activeUserQuery');
 
 const validateUser = async (req, res, next) => {
     try {
