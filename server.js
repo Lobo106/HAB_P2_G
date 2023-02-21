@@ -25,7 +25,25 @@ app.use(express.json());
 // "body" y "files" en el objeto "request".
 app.use(fileUpload());
 
+/**
+ * ############################
+ * ## Controladores Usuarios ##
+ * ############################
+ */
+const {
+    newUser,
+    validateUser,
+    loginUser,
+} = require('./controllers/users');
 
+// Crear un usuario.
+app.post('/users', newUser);
+
+// Validamos un usuario.
+app.put('/users/validate/:registrationCode', validateUser);
+
+// Login de usuario.
+app.post('/users/login', loginUser);
 
 
 
