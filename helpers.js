@@ -2,6 +2,17 @@ const fs = require('fs/promises');
 const path = require('path');
 const sharp = require('sharp');
 const { v4: uuid } = require('uuid');
+const nodemailer = require('nodemailer');
+const { SMTP_USER, SMTP_PASS, UPLOADS_DIR } = process.env;
+
+const transport = nodemailer.createTransport({
+    host: 'smtp-relay.sendinblue.com',
+    port: 587,
+    auth: {
+        user: SMTP_USER,
+        pass: SMTP_PASS,
+    },
+});
 
 /**
  * ####################
@@ -13,6 +24,26 @@ const generateError = (msg, status) => {
     const err = new Error(msg);
     err.httpStatus = status;
     throw err;
+};
+
+/**
+ * ###############
+ * ## Send Mail ##
+ * ###############
+ */
+
+const sendMail = async (to, subject, text) => {
+    try {
+        await transport.sendMail({
+            from: SMTP_USER,
+            to,
+            subject,
+            text,
+        });
+    } catch (err) {
+        console.error(err);
+        generateError('Error al enviar el email de verificación');
+    }
 };
 
 /**
