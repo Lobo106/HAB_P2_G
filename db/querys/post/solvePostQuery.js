@@ -11,17 +11,17 @@ const solvePostQuery = async (id) => {
         //await selectPostById;
 
         // Comprobamos si el post está resuelto o no resuelto
-       const resuelto = await connection.query(
-            `SELECT resuelto FROM posts WHERE id = ?`,
+       const [resuelto] = await connection.query(
+            `SELECT * FROM posts WHERE id = ?`,
         [id]
         );
-console.log(resuelto);
+console.log("resuelto es esto:", resuelto[0].resuelto);
         // Si el post está sin resolver, lo resolvemos.
-        if (resuelto[0] === 0) {
+        if (resuelto[0].resuelto === 0) {
 
             await connection.query(`UPDATE posts SET resuelto = 1 WHERE id = ?`,
                 [id])
-            //Devolvemos el nuevo estado de la inidencia
+            //Devolvemos el nuevo estado de la incidencia
             return true;
         }
         //Si el post está resuelto, lo volvemos a poner como que no está resuelto

@@ -1,49 +1,18 @@
-const selectUserByEmailQuery = require('../../db/queries/users/selectUserByEmailQuery');
+const activeUserQuery = require('../../db/querys/users/activeUserQuery');
 
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-
-const { generateError } = require('../../helpers');
-
-const loginUser = async (req, res, next) => {
+const validateUser = async (req, res, next) => {
     try {
-        const { email, password } = req.body;
+        const { registrationCode } = req.params;
 
-        if (!email || !password) {
-            generateError('Faltan campos', 400);
-        }
-
-        const user = await selectUserByEmailQuery(email);
-
-        const validPassword = await bcrypt.compare(password, user.password);
-
-        if (!validPassword) {
-            generateError('Contraseña incorrecta', 401);
-        }
-
-        // Si el usuario no está activo lanzamos un error.
-        if (!user.active) {
-            generateError('Usuario pendiente de activar', 401);
-        }
-
-        const userInfo = {
-            id: user.id,
-            role: user.role,
-        };
-
-        const token = jwt.sign(userInfo, process.env.SECRET, {
-            expiresIn: '7d',
-        });
+        await activeUserQuery(registrationCode);
 
         res.send({
             status: 'ok',
-            data: {
-                token,
-            },
+            message: 'Usuario activado',
         });
     } catch (err) {
         next(err);
     }
 };
 
-module.exports = loginUser;
+module.exports = validateUser;

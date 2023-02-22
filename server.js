@@ -5,6 +5,8 @@ const fileUpload = require('express-fileupload');
 const morgan = require('morgan');
 const cors = require('cors');
 const solvePost = require('./controllers/post/solvePost');
+const isAuth = require('./middlewares/isAuth');
+const newPost = require('./controllers/post/newPost');
 
 
 // Creamos el servidor.
@@ -38,6 +40,9 @@ const {
     loginUser,
 } = require('./controllers/users');
 
+
+
+
 // Crear un usuario.
 app.post('/users', newUser);
 
@@ -54,9 +59,11 @@ app.post('/users/login', loginUser)
  * ##########################
  */
 
+//Crear un nuevo Post
+app.post('/posts', isAuth, newPost)
 
 //Resolver o activar un Post
-app.put('/posts/:idPost', solvePost)
+app.put('/posts/:id', isAuth ,solvePost)
 
 
 

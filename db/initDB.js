@@ -24,9 +24,10 @@ const createTables = async () => {
             CREATE TABLE IF NOT EXISTS users (
                 id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
                 name VARCHAR(100) UNIQUE NOT NULL,
-                email VARCHAR(100) UNIQUE NOT NULL,          
+                email VARCHAR(100) UNIQUE NOT NULL,
                 password VARCHAR(100) NOT NULL,
-                registrationCode VARCHAR(100) NOT NULL,
+                registrationCode VARCHAR(100),
+                active BOOLEAN DEFAULT FALSE,
                 avatar VARCHAR(100),
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
                 modifiedAt TIMESTAMP ON UPDATE CURRENT_TIMESTAMP 

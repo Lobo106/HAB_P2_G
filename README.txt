@@ -50,6 +50,8 @@ ADMINISTRADOR
     -   name
     -   email
     -   password
+    -   registrationCode
+    -   active
     -   avatar
     -   createdAt
     -   modifiedAt
@@ -71,20 +73,20 @@ ADMINISTRADOR
 ## Endpoints - OBLIGATORIOS
 
 ## Usuarios:
--   POST [/users/login] - Login de usuario (devuelve token).
+-   POST [/users/login] - Login de usuario (devuelve token).✅
 
 ## Post:
--   POST [/post] - Permite crear un post. *TOKEN*
+-   POST [/post] - Permite crear un post. *TOKEN*✅
 -   GET [/post] - Lista todos los post(los resueltos y los sin resolver).
 -   GET [/post/:idPost] - Devuelve información de un post concreto.
--   PUT[/post/:idPost] - desmarca marca la incidencia como resuelta *TOKEN*
+-   PUT[/post/:idPost] - desmarca marca la incidencia como resuelta *TOKEN*✅
 
 ## Endpoints - OPCIONALES
 
 ### Usuarios: ✅
 
--   POST [/users] - Registro de usuario. 
--   POST [/users/login] - Login de usuario (devuelve token). 
+-   POST [/users] - Registro de usuario. ✅
+-   POST [/users/login] - Login de usuario (devuelve token). ✅
 -   GET [/users] - Devuelve información del usuario del token. **TOKEN** 
 -   PUT [/users] - Editar nombre de usuario o el email. **TOKEN** 
 -   PUT [/users/avatar] - Editar el avatar del usuario. **TOKEN** 
@@ -92,8 +94,8 @@ ADMINISTRADOR
 
 ### Post: ✅
 
--   POST [/post] - Permite crear un post. **TOKEN** 
+-   POST [/post] - Permite crear un post. **TOKEN** ✅
 -   GET [/post] - Lista todos los post(los resueltos y los sin resolver). 
 -   GET [/post/:idPost] - Devuelve información de un post concreto. 
--   PUT [/post/:idPost/resuelto] - Resuelve una incidencia o la vuelve a activar. **TOKEN** 
+-   PUT [/post/:idPost/resuelto] - Resuelve una incidencia o la vuelve a activar. **TOKEN**✅ 
 -   DELETE [/post/:id] - Borra un post solo si eres quien lo creó. **TOKEN** 

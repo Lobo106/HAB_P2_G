@@ -11,15 +11,16 @@ console.log(id);
         //await selectPostByIdQuery(idPost);
 
         // Cambiamos de estado la incidencia en la base de datos.
+        const isResolve = await solvePostQuery(id)
 
-        if (await solvePostQuery(id) === true) {
+        if (isResolve) {
             res.send({
                 status: 'ok',
                 message: 'Incidencia solventada',
             })
         }
 
-        if (await solvePostQuery(id) === false) {
+        if (!isResolve) {
             res.send({
                 status: 'ok',
                 message: 'Incidencia activada',
