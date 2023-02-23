@@ -50,7 +50,7 @@ const createTables = async () => {
         `);
 
         await connection.query(`
-            INSERT INTO users (name, email, password, registrationCode)
+            INSERT INTO users (name, email, password, active)
             VALUES( 'Administrador', 'administrador@gmail.com', '12345', '1')`)
 
         console.log('¡Tablas creadas!');

@@ -58,7 +58,7 @@ const sendMail = async (to, subject, text) => {
 
 const saveImg = async (img, resizePx) => {
     // Creamos la ruta absoluta al directorio donde vamos a subir las imágenes.
-    const uploadsPath = path.join(__dirname, process.env.UPLOADS_DIR);
+    const uploadsPath = path.join(__dirname, UPLOADS_DIR);
 
     try {
         // Intentamos acceder al directorio de subida de archivos mediante el método
@@ -73,7 +73,7 @@ const saveImg = async (img, resizePx) => {
     // Convertimos la imagen en un objeto de tipo Sharp.
     const sharpImg = sharp(img.data);
 
-    // Redimensionamos el avatar a un ancho de 100px.
+    // Redimensionamos la imagen al ancho que enviamos.
     sharpImg.resize(resizePx);
 
     // Generamos un nombre único para la imagen.

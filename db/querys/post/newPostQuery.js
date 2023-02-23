@@ -6,13 +6,13 @@ const newPostQuery = async (title, text,barrio, photo, idUser) => {
     try {
         connection = await getDB();
 
-        const [tweet] = await connection.query(
+        const [posts] = await connection.query(
             `INSERT INTO posts (title, text, barrio, photo, idUser) VALUES (?, ?, ?, ?, ?)`,
             [title, text, barrio, photo, idUser]
         );
 
         return {
-            id: tweet.insertId,
+            id: posts.insertId,
             title,
             text,
             barrio,
